@@ -8,6 +8,11 @@ AKISMET_IS_TEST = getattr(settings, 'AKISMET_IS_TEST', False)   # Enable in case
 CRISPY_TEMPLATE_PACK = getattr(settings, 'CRISPY_TEMPLATE_PACK', 'bootstrap')
 
 USE_THREADEDCOMMENTS = 'threadedcomments' in settings.INSTALLED_APPS
+USE_CUSTOM_COMMENTS = getattr(settings, 'USE_CUSTOM_COMMENTS', None)
+CUSTOM_COMMENT_MODEL_DIR = getattr(settings, 'CUSTOM_COMMENT_MODEL_DIR', None)
+CUSTOM_COMMENT_MODEL_NAME = getattr(settings, 'CUSTOM_COMMENT_MODEL_NAME', None)
+CUSTOM_COMMENT_FORM_DIR = getattr(settings, 'CUSTOM_COMMENT_FORM_DIR', None)
+CUSTOM_COMMENT_FORM_NAME = getattr(settings, 'CUSTOM_COMMENT_FORM_NAME', None)
 
 FLUENT_COMMENTS_REPLACE_ADMIN = getattr(settings, "FLUENT_COMMENTS_REPLACE_ADMIN", True)
 

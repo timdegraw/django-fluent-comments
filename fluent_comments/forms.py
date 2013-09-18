@@ -5,6 +5,11 @@ from fluent_comments import appsettings
 
 if appsettings.USE_THREADEDCOMMENTS:
     from threadedcomments.forms import ThreadedCommentForm as base_class
+elif appsettings.USE_CUSTOM_COMMENTS:
+    print appsettings.CUSTOM_COMMENT_FORM_NAME
+    print appsettings.CUSTOM_COMMENT_FORM_DIR
+    from example_custom_module.article.forms import CommentFormWithTitle as base_class
+    print base_class
 else:
     base_class = CommentForm
 
@@ -15,7 +20,6 @@ class FluentCommentForm(base_class):
     """
     def __init__(self, *args, **kwargs):
         super(FluentCommentForm, self).__init__(*args, **kwargs)
-
         # Remove fields from the form.
         # This has to be done in the constructor, because the ThreadedCommentForm
         # inserts the title field in the __init__, instead of the static form definition.
@@ -32,3 +36,4 @@ class FluentCommentForm(base_class):
             self.cleaned_data[name] = ""
 
         return super(FluentCommentForm, self).get_comment_create_data()
+

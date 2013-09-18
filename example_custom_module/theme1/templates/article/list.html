@@ -1,0 +1,20 @@
+{% extends "theme1/base.html" %}{% load i18n comments %}{% load url from future %}
+
+{% block headtitle %}Articles{% endblock %}
+
+{% block main %}
+    <h1>List of articles</h1>
+    <p>(<a href="{% url 'article-full-list' %}">show full list</a>)</p>
+
+    {% if object_list %}
+        <ul>
+            {% for article in object_list %}
+                {% get_comment_count for article as comments_count %}
+                <li><a href="{{ article.get_absolute_url }}">{{ article }}</a> ({{ comments_count }} comments)</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No articles posted</p>
+    {% endif %}
+
+{% endblock %}
