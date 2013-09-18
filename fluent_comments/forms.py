@@ -6,8 +6,6 @@ from fluent_comments import appsettings
 if appsettings.USE_THREADEDCOMMENTS:
     from threadedcomments.forms import ThreadedCommentForm as base_class
 elif appsettings.USE_CUSTOM_COMMENTS:
-    print appsettings.CUSTOM_COMMENT_FORM_NAME
-    print appsettings.CUSTOM_COMMENT_FORM_DIR
     from example_custom_module.article.forms import CommentFormWithTitle as base_class
     print base_class
 else:

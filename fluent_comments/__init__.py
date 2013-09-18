@@ -34,5 +34,4 @@ def get_form():
     """
     Return the form to use for commenting.
     """
-    print 'heeladfasd'
     return FluentCommentForm
