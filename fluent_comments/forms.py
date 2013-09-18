@@ -1,3 +1,4 @@
+import importlib
 from django.contrib.comments import CommentForm
 from django.core.exceptions import ImproperlyConfigured
 from fluent_comments import appsettings
@@ -5,7 +6,8 @@ from fluent_comments import appsettings
 
 
 if appsettings.USE_CUSTOM_COMMENTS:
-    from example_custom_module.article.forms import CommentFormWithTitle as base_class
+    custom_comment_form_module = importlib.import_module(appsettings.CUSTOM_COMMENT_FORM_DIR)
+    base_class = getattr(custom_comment_form_module, appsettings.CUSTOM_COMMENT_FORM_NAME)
 elif appsettings.USE_THREADEDCOMMENTS:
     from threadedcomments.forms import ThreadedCommentForm as base_class
 else:
