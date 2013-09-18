@@ -3,11 +3,11 @@ from django.core.exceptions import ImproperlyConfigured
 from fluent_comments import appsettings
 
 
-if appsettings.USE_THREADEDCOMMENTS:
-    from threadedcomments.forms import ThreadedCommentForm as base_class
-elif appsettings.USE_CUSTOM_COMMENTS:
+
+if appsettings.USE_CUSTOM_COMMENTS:
     from example_custom_module.article.forms import CommentFormWithTitle as base_class
-    print base_class
+elif appsettings.USE_THREADEDCOMMENTS:
+    from threadedcomments.forms import ThreadedCommentForm as base_class
 else:
     base_class = CommentForm
 

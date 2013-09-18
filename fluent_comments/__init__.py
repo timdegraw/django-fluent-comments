@@ -10,13 +10,14 @@ from fluent_comments.forms import FluentCommentForm
 # following PEP 386
 __version__ = "1.0a1"
 
-if appsettings.USE_THREADEDCOMMENTS:
+
+if appsettings.USE_CUSTOM_COMMENTS:
+    custom_model = __import__(appsettings.CUSTOM_COMMENT_MODEL_DIR, globals(), locals(), [appsettings.CUSTOM_COMMENT_MODEL_NAME,], -1)
+elif appsettings.USE_THREADEDCOMMENTS:
     # Extend the API provided by django-threadedcomments,
     # in case this app uses more hooks of Django's custom comment app API.
     from threadedcomments import *
-elif appsettings.USE_CUSTOM_COMMENTS:
-    custom_model = __import__(appsettings.CUSTOM_COMMENT_MODEL_DIR, globals(), locals(), [appsettings.CUSTOM_COMMENT_MODEL_NAME,], -1)
-    
+
 
 def get_model():
     """
